@@ -8,6 +8,7 @@ const config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
   prefix: "",
+  
   theme: {
     container: {
       center: true,
@@ -16,6 +17,7 @@ const config = {
         "2xl": "1400px",
       },
     },
+    
     extend: {
       colors: {
         border: "hsl(var(--border))",
