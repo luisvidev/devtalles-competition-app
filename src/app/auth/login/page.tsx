@@ -8,27 +8,33 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage() {
   return (
     <Card className="max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl text-accent">Sign in</CardTitle>
-        <CardDescription>
-          Enter your email below to create your account
-        </CardDescription>
+        <div className="flex justify-center">
+          <Image
+            src="/logo-morado.png"
+            width={250}
+            height={250}
+            alt="devtalles logo"
+          />
+        </div>
       </CardHeader>
       <CardContent>
         <UserAuthForm />
       </CardContent>
       <CardFooter className="grid">
-        <p className="px-8 text-center text-sm text-muted-foreground">
-          Don&apos;t have an account?
+        <p className="px-5 text-center text-sm text-muted-foreground">
+          ¿Necesitas ayuda para ingresar al backoffice?
           <Link
             className="ml-2 text-secondary hover:underline underline-offset-4 hover:text-primary-accent"
-            href={"new-account"}
+            href={"https://cursos.devtalles.com/pages/contactanos"}
+            target="_blank"
           >
-            Sign up
+            Contáctanos
           </Link>
         </p>
       </CardFooter>
