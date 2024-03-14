@@ -1,14 +1,13 @@
 import dayjs from "dayjs";
 import prisma from "../lib/prisma";
+import bcryptjs from "bcryptjs";
 
 async function main() {
   // 1. Delete previous records
-  await Promise.all([
-    prisma.prize.deleteMany(),
-    prisma.subscription.deleteMany(),
-    prisma.raffle.deleteMany(),
-    prisma.user.deleteMany(),
-  ]);
+  await prisma.subscription.deleteMany();
+  await prisma.prize.deleteMany();
+  await prisma.raffle.deleteMany();
+  await prisma.user.deleteMany();
 
   // 2. Insert dummy data
 
@@ -19,37 +18,37 @@ async function main() {
         name: "Admin 1",
         email: "admin1@test.com",
         role: "admin",
-        password: "1234",
+        password: bcryptjs.hashSync("1234"),
       },
       {
         name: "Admin 2",
         email: "admin2@test.com",
         role: "admin",
-        password: "1234",
+        password: bcryptjs.hashSync("1234"),
       },
       {
         name: "Admin 3",
         email: "admin3@test.com",
         role: "admin",
-        password: "1234",
+        password: bcryptjs.hashSync("1234"),
       },
       {
         name: "Caspian",
         email: "caspian@test.com",
         role: "user",
-        password: "1234",
+        password: bcryptjs.hashSync("1234"),
       },
       {
         name: "Kellan",
         email: "kellan@test.com",
         role: "user",
-        password: "1234",
+        password: bcryptjs.hashSync("1234"),
       },
       {
         name: "Oberon",
         email: "oberon@test.com",
         role: "user",
-        password: "1234",
+        password: bcryptjs.hashSync("1234"),
       },
     ],
   });
