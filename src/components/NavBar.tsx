@@ -4,7 +4,9 @@ import Link from 'next/link';
 const NavBar = () => {
     return (
         <header className="px-8 py-4 bg-black flex justify-between items-center sticky top-0 z-10">
-            <Image src="/LOGOBLANCO.png" alt="logo" width={128} height={64} />
+            <Link href="/">
+                <Image src="/LOGOBLANCO.png" alt="logo" width={128} height={64} />
+            </Link>
             <nav>
                 <ul className="flex gap-4 text-white">
                     <Link href="/register">
