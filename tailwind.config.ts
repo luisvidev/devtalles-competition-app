@@ -1,14 +1,14 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-	],
+    "./src/pages/**/*.{ts,tsx}",
+    "./src/components/**/*.{ts,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   prefix: "",
-  
+
   theme: {
     container: {
       center: true,
@@ -17,7 +17,7 @@ const config = {
         "2xl": "1400px",
       },
     },
-    
+
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -76,6 +76,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
