@@ -15,10 +15,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { useFormState, useFormStatus } from "react-dom";
-import { login } from "@/actions";
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
+import { login, statusLogin } from "@/actions";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
@@ -31,7 +29,8 @@ const FormSchema = z.object({
 });
 
 export const UserAuthForm = () => {
-  const [state, dispatch] = useFormState(login, undefined);
+  const [state, setState] = useState<statusLogin>();
+
   const router = useRouter();
 
   useEffect(() => {
@@ -49,13 +48,13 @@ export const UserAuthForm = () => {
     },
   });
 
-  function onSubmit({ email, password }: z.infer<typeof FormSchema>) {
+  const onSubmit = async ({ email, password }: z.infer<typeof FormSchema>) => {
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-
-    dispatch(formData);
-  }
+    const stateLogin: statusLogin = await login("", formData);
+    setState(stateLogin);
+  };
 
   return (
     <Form {...form}>
@@ -98,7 +97,7 @@ export const UserAuthForm = () => {
             </FormItem>
           )}
         />
-        <LoginButton />
+        <LoginButton pending={form.formState.isSubmitting} />
         {state && state !== "success" && (
           <p className="text-sm text-red-500">{state}</p>
         )}
@@ -106,10 +105,11 @@ export const UserAuthForm = () => {
     </Form>
   );
 };
+interface LoginButtonProps {
+  pending: boolean;
+}
 
-function LoginButton() {
-  const { pending } = useFormStatus();
-
+function LoginButton({ pending }: LoginButtonProps) {
   return (
     <Button
       aria-disabled={pending}
@@ -121,7 +121,7 @@ function LoginButton() {
         <div role="status" className="m-2">
           <svg
             aria-hidden="true"
-            className="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+            className="inline mr-2 w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@ function LoginButton() {
               fill="currentFill"
             />
           </svg>
-          <span className="sr-only">Loading...</span>
+          <span>Loading...</span>
         </div>
       ) : (
         "Ingresar"
