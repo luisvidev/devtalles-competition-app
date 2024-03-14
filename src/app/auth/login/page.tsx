@@ -23,7 +23,7 @@ export default function LoginPage() {
       </CardContent>
       <CardFooter className="grid">
         <p className="px-8 text-center text-sm text-muted-foreground">
-          Don't have an account?
+          Don&apos;t have an account?
           <Link
             className="ml-2 text-secondary hover:underline underline-offset-4 hover:text-primary-accent"
             href={"new-account"}
