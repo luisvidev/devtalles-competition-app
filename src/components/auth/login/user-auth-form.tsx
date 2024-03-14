@@ -49,9 +49,20 @@ export const UserAuthForm = () => {
     },
   });
 
+  function onSubmit({ email, password }: z.infer<typeof FormSchema>) {
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    dispatch(formData);
+  }
+
   return (
     <Form {...form}>
-      <form action={dispatch} className="flex flex-col gap-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-4"
+      >
         <FormField
           control={form.control}
           name="email"
