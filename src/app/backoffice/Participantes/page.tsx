@@ -1,4 +1,4 @@
-export default function ParticipantesLayout({
+export default function ParticipantsPage({
   children,
 }: {
   children: React.ReactNode;
