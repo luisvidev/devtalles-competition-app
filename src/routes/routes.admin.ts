@@ -16,7 +16,7 @@ const routesAdmin: Route[] = [
     name: "Sorteos",
   },
   {
-    path: `${adminPrefix}/Participantes`,
+    path: `${adminPrefix}/participants`,
     icon: InfoCircledIcon,
     name: "Participantes",
   },
