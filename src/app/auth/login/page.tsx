@@ -16,6 +16,7 @@ export default function LoginPage() {
       <CardHeader>
         <div className="flex justify-center">
           <Image
+            priority={true}
             src="/logo-morado.png"
             width={250}
             height={250}

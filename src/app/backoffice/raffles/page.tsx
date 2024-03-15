@@ -6,6 +6,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { RaffleCard } from "@/components/RaffleCard/RaffleCard";
 
+import dayjs from "dayjs";
 
 interface Props {
   searchParams: {

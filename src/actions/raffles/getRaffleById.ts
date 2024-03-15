@@ -5,9 +5,14 @@ import prisma from "@/lib/prisma";
 export async function getRaffleById(raffleId: string) {
   try {
     const raffle = await prisma.raffle.findFirst({
-      // include: {
-      //   ProductImage: true,
-      // },
+      include: {
+        author: {
+          select: {
+            email: true,
+          },
+        },
+        prizes: true,
+      },
       where: {
         id: raffleId,
       },
@@ -23,6 +28,8 @@ export async function getRaffleById(raffleId: string) {
 
     return {
       raffle,
+      prizes: raffle.prizes,
+      authorEmail: raffle.author.email,
       totalParticipants,
     };
   } catch (error) {
