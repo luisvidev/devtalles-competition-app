@@ -32,7 +32,7 @@ export default async function RaffleDetailPage({ params }: Props) {
   } = raffle;
 
   return (
-    <section className="p-10">
+    <section className="contaner-pege-description p-10">
       <GoBackButton />
       <div
         className="my-6 flex items-center justify-center w-100 h-80 bg-cover bg-center rounded-lg"
