@@ -84,7 +84,7 @@ async function main() {
     timezone: "America/Mexico_City",
     startAt: dayjs().toDate(),
     endAt: dayjs().add(1, "week").toDate(),
-    userId: admin1.id,
+    authorId: admin1.id,
   };
 
   const secretFriendsRaffle = "Amigos Secreto PRO";
@@ -99,7 +99,7 @@ async function main() {
     timezone: "Europe/Madrid",
     startAt: dayjs().subtract(1, "week").toDate(),
     endAt: dayjs().subtract(1, "day").toDate(),
-    userId: admin2.id,
+    authorId: admin2.id,
   };
 
   await prisma.raffle.createMany({
@@ -121,25 +121,21 @@ async function main() {
   const prizeForRaffleInProgress1 = {
     name: "Primer lugar $500",
     description: "",
-    quantity: 1,
     raffleId: raffleInProgress.id,
   };
   const prizeForRaffleInProgress2 = {
     name: "Segundo lugar $300",
     description: "",
-    quantity: 1,
     raffleId: raffleInProgress.id,
   };
   const prizeForRaffleInProgress3 = {
     name: "Segundo lugar $200",
     description: "",
-    quantity: 1,
     raffleId: raffleInProgress.id,
   };
   const prizeForRaffleFinishedDefinition = {
     name: "GiftCard de Amazon $100",
     description: "",
-    quantity: 2,
     raffleId: raffleFinished.id,
   };
 
@@ -167,12 +163,10 @@ async function main() {
   const subscriptionWithWinner2ForRaffleFinished = {
     userId: studentKellan.id,
     raffleId: raffleFinished.id,
-    prizeId: prizeForRaffleFinished.id,
   };
   const subscriptionWithoutWinnerForRaffleFinished = {
     userId: studentOberon.id,
     raffleId: raffleFinished.id,
-    prizeId: prizeForRaffleFinished.id,
   };
   const subscriptionForRaffleInProgress1 = {
     userId: studentCaspian.id,

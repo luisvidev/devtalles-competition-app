@@ -1,9 +1,9 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
-export async function removeRaffleById(raffleId: string) {
+export async function deleteRaffleById(raffleId: string) {
   try {
     const deletedRaffle = await prisma.raffle.delete({
       where: {
@@ -11,8 +11,7 @@ export async function removeRaffleById(raffleId: string) {
       },
     });
 
-    console.log({ deletedRaffle });
-    // redirect("/backoffice/raffles");
+    revalidatePath(`/backoffice/raffles`);
   } catch (error) {
     console.log(error);
     throw new Error("No se pudo eliminar el sorteo");

@@ -2,6 +2,7 @@ import React from "react";
 import LogoutButton from "./ui/LogoutButton";
 import { getRaffles } from "@/actions/raffles/getRaffles";
 import Link from "next/link";
+import dayjs from "dayjs";
 
 interface Props {
   searchParams: {
@@ -21,7 +22,9 @@ export default async function RafflesPage({ searchParams }: Props) {
       <div className="my-10">
         {raffles.map((raffle) => (
           <div key={raffle.id}>
-            <Link href={`/backoffice/raffles/${raffle.id}`}>{raffle.id}</Link>
+            <Link href={`/backoffice/raffles/${raffle.id}`}>
+              {raffle.id} - {raffle.name}
+            </Link>
           </div>
         ))}
       </div>
