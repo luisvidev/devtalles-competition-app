@@ -81,11 +81,11 @@ export const RaffleDetail = ({
         className="my-6 flex items-center justify-center w-100 h-80 bg-cover bg-center rounded-lg"
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
-        THIS IS THE BANNER
+        {/* THIS IS THE BANNER */}
       </div>
 
       <div className="flex justify-between pt-8">
-        <h1 className="text-2xl font-bold">{name}</h1>
+        <h1 className="text-3xl font-bold">{name}</h1>
         <div className="flex gap-x-4">
           <button
             type="button"
@@ -105,26 +105,26 @@ export const RaffleDetail = ({
       )}
 
       <div className="py-4">
-        <label>Descripción</label>
-        <p>{description}</p>
+        <label className="block text-gray-700 text-2xl font-bold mb-2">Descripcion</label>
+        <p className="text-gray-900 text-lg">{description}</p>
       </div>
       <div className="py-4">
-        <label>Terminos y condiciones</label>
-        <p>{termsAndConditions}</p>
+        <label className="block text-gray-700 text-2xl font-bold mb-2">Terminos y condiciones</label>
+        <p className="text-gray-900 text-lg">{termsAndConditions}</p>
       </div>
 
       <div className="py-4 flex justify-between">
-        <div>
-          <label>Fecha de finalización en hora local:</label>
-          <p>{dayjs(endAt).format("YYYY/MM/DD HH:mm:ss")}</p>
+        <div className="rounded-xl bg-gray-300 rounded-tl rounded-br border border-solid p-7">
+          <label className="text-primary text-xl font-bold">Fecha de finalización en hora local:</label>
+          <p className="text-gray-900 text-lg">{dayjs(endAt).format("YYYY/MM/DD HH:mm:ss")}</p>
         </div>
-        <div>
-          <label>Finaliza en la fecha:</label>
-          <p>{dayjs(endAt).tz(timezone).format("YYYY/MM/DD HH:mm:ss")}</p>
+        <div className="rounded-xl bg-gray-300 rounded-tl rounded-br border border-solid p-7">
+          <label className="text-primary text-xl font-bold">Finaliza en la fecha:</label>
+          <p className="text-gray-900 text-lg">{dayjs(endAt).tz(timezone).format("YYYY/MM/DD HH:mm:ss")}</p>
         </div>
-        <div>
-          <label>Zona horaria:</label>
-          <p>{timezone}</p>
+        <div className="rounded-xl bg-gray-300 rounded-tl rounded-br border border-solid p-7">
+          <label className="text-primary text-xl font-bold">Zona horaria:</label>
+          <p className="text-gray-900 text-lg">{timezone}</p>
         </div>
       </div>
 

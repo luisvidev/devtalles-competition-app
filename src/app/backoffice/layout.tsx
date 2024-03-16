@@ -14,14 +14,13 @@ export default async function AdminDashboardLayout({
   }
 
   return (
-    <div className="w-full grid">
-      <div className="min-h-full ml-72">
-        <header className="fixed pointer-events-none inset-0 z-40 flex">
-          <SideBar />
+    <div>
+        <header className="w-full sticky pointer-events-none inset-0 z-40 flex h-20 border border-solid border-black bg-white p-0">
+          <h1 className="flex justify-center font-bold items-center w-full">Header</h1>
         </header>
-        <div className="relative h-full bg-background">
-          <div className=" flex h-full flex-col px-4 pt-14 ">{children}</div>
-        </div>
+      <div className="flex min-h-full container p-0">
+          <SideBar />
+          <div className="container-principal-layaut flex h-full flex-col max-w-1100px">{children}</div>
       </div>
     </div>
   );
