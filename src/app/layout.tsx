@@ -17,12 +17,9 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body className={`${inter.className} relative`}>
-                <NavBar />
-                <main className="w-full">{children}</main>
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en" className="h-full">
+      <body className={`${inter.className} grid min-h-full relative`}>{children}</body>
+    </html>
+  );
 }
