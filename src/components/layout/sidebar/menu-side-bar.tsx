@@ -19,7 +19,7 @@ export default function MenuSideBar() {
     if (activeLink && activeLink.current) {
       menu.setTop(activeLink.current);
     }
-  }, []);
+  }, [activeLink.current]);
 
   return (
     <div>
@@ -39,7 +39,6 @@ export default function MenuSideBar() {
               <ActiveLink
                 refActive={path === pathName ? activeLink : null}
                 onMouseEnter={(e) => hoverBackDrop.setTop(e.currentTarget)}
-                onClick={(e) => menu.setTop(e.currentTarget)}
                 path={path}
               >
                 <IconComponent className="mr-2" /> {name}
