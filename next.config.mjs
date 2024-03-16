@@ -2,7 +2,7 @@
 const nextConfig = {
   output: "standalone",
   images: {
-    domains: ["media.licdn.com", "pbs.twimg.com"],
+    domains: ["media.licdn.com", "pbs.twimg.com", "cdn.sanity.io"],
   },
 };
 

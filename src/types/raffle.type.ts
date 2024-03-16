@@ -7,7 +7,6 @@ export interface Raffle {
   timezone: string;
   createdAt: Date;
   updatedAt: Date;
-  startAt: Date;
   endAt: Date;
   authorId: string;
 }
