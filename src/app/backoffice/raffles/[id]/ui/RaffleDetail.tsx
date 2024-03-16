@@ -1,7 +1,11 @@
+"use client";
+
 import { Prize, Raffle } from "@/types";
-import dayjs from "dayjs";
+import dayjs from "@/lib/dayjs";
 import React from "react";
 import { DeleteRaffleButton } from "./DeleteRaffleButton";
+import Countdown from "react-countdown";
+import { Prizes } from "./Prizes";
 
 interface Props {
   raffle: Raffle;
@@ -22,11 +26,54 @@ export const RaffleDetail = ({
     description,
     id: raffleId,
     termsAndConditions,
-    startAt,
     endAt,
     timezone,
     createdAt,
   } = raffle;
+
+  const showCountdown = dayjs().isBefore(dayjs(endAt));
+
+  // Renderer callback with condition
+  const rendererInCountDown = (props: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    completed: boolean;
+    formatted: {
+      days: string;
+      hours: string;
+      minutes: string;
+      seconds: string;
+    };
+  }) => {
+    const { formatted, days, completed } = props;
+    if (completed) {
+      return <span>You are good to go!</span>;
+    } else {
+      // TODO: this can be a component
+      return (
+        <div className="flex flex-row gap-x-4">
+          <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div>{formatted.days}</div>
+            <div>días</div>
+          </div>
+          <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div>{formatted.hours}</div>
+            <div>Horas</div>
+          </div>
+          <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div>{formatted.minutes}</div>
+            <div>Minutos</div>
+          </div>
+          <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div>{formatted.seconds}</div>
+            <div>Segundos</div>
+          </div>
+        </div>
+      );
+    }
+  };
 
   return (
     <div>
@@ -49,6 +96,14 @@ export const RaffleDetail = ({
           <DeleteRaffleButton raffleId={raffleId} />
         </div>
       </div>
+
+      {showCountdown && (
+        <div>
+          <h2>Tiempo restante para para que finalice el sorteo:</h2>
+          <Countdown date={endAt} renderer={rendererInCountDown} />
+        </div>
+      )}
+
       <div className="py-4">
         <label>Descripción</label>
         <p>{description}</p>
@@ -60,12 +115,12 @@ export const RaffleDetail = ({
 
       <div className="py-4 flex justify-between">
         <div>
-          <label>Comienza en la fecha:</label>
-          <p>{dayjs(startAt).format("YYYY/MM/DD HH:mm:ss")}</p>
+          <label>Fecha de finalización en hora local:</label>
+          <p>{dayjs(endAt).format("YYYY/MM/DD HH:mm:ss")}</p>
         </div>
         <div>
           <label>Finaliza en la fecha:</label>
-          <p>{dayjs(endAt).format("YYYY/MM/DD HH:mm:ss")}</p>
+          <p>{dayjs(endAt).tz(timezone).format("YYYY/MM/DD HH:mm:ss")}</p>
         </div>
         <div>
           <label>Zona horaria:</label>
@@ -89,23 +144,7 @@ export const RaffleDetail = ({
       </div>
 
       <h3 className="text-xl font-bold">Premio/s</h3>
-      <ul>
-        {prizes.map((prize) => (
-          <li
-            key={prize.id}
-            className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-          >
-            <div className="py-4">
-              <label>Nombre</label>
-              <p>{prize.name}</p>
-            </div>
-            <div className="py-4">
-              <label>Desripción del premio</label>
-              <p>{prize.description}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <Prizes prizes={prizes} />
     </div>
   );
 };

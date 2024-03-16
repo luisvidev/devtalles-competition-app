@@ -3,5 +3,6 @@ export interface Prize {
   name: string;
   description: string | null;
   raffleId: string;
-  // winnerId: string | null;
+  winnerId?: string | null;
+  winnerEmail?: string | null;
 }

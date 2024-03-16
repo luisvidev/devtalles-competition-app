@@ -11,7 +11,20 @@ export async function getRaffleById(raffleId: string) {
             email: true,
           },
         },
-        prizes: true,
+        prizes: {
+          include: {
+            winner: {
+              include: {
+                user: {
+                  select: {
+                    id: true,
+                    email: true,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       where: {
         id: raffleId,
@@ -26,9 +39,15 @@ export async function getRaffleById(raffleId: string) {
       },
     });
 
+    const prizes = raffle.prizes.map((prize) => {
+      const { winner, ...rest } = prize;
+      if (!winner) return { ...rest };
+      return { ...rest, winnerEmail: winner?.user.email };
+    });
+
     return {
       raffle,
-      prizes: raffle.prizes,
+      prizes,
       authorEmail: raffle.author.email,
       totalParticipants,
     };
