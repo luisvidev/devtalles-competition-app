@@ -41,7 +41,6 @@ model Raffle {
   timezone           String
   createdAt          DateTime       @default(now())
   updatedAt          DateTime       @updatedAt
-  startAt            DateTime
   endAt              DateTime
   authorId           String         @unique
   author             User           @relation(fields: [authorId], references: [id])
