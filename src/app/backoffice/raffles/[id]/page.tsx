@@ -22,7 +22,7 @@ export default async function RaffleDetailPage({ params }: Props) {
   }
 
   return (
-    <section className="contaner-pege-description p-10">
+    <section className="p-10">
       <GoBackButton />
       <RaffleDetail
         raffle={raffle}

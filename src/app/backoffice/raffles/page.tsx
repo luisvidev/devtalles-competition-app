@@ -2,10 +2,6 @@ import React from "react";
 import LogoutButton from "./ui/LogoutButton";
 import { getRaffles } from "@/actions/raffles/getRaffles";
 import Link from "next/link";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import Image from "next/image";
-import { RaffleCard } from "@/components/RaffleCard/RaffleCard";
-
 import dayjs from "dayjs";
 
 interface Props {
@@ -21,9 +17,17 @@ export default async function RafflesPage({ searchParams }: Props) {
   const { raffles, currentPage, totalPages } = response;
 
   return (
-    <div className="container p-10">
-      <h2>Sorteos - Devtalles</h2>
-      <RaffleCard raffles={raffles}/>
+    <div className="p-10">
+      <h2>List of raffles</h2>
+      <div className="my-10">
+        {raffles.map((raffle) => (
+          <div key={raffle.id}>
+            <Link href={`/backoffice/raffles/${raffle.id}`}>
+              {raffle.id} - {raffle.name}
+            </Link>
+          </div>
+        ))}
+      </div>
       <LogoutButton />
     </div>
   );
