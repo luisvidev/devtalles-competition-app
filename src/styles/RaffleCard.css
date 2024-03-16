@@ -1,0 +1,42 @@
+.containerCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0px 0px 0px auto;
+  justify-items: center;
+  background-color: #f5f5f7;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.bodyCard {
+  transition: all 400ms ease;
+  transition: transform 1s;
+  width: fit-content;
+}
+
+.cardTest{
+  overflow: hidden;
+  border: none;
+  transition: all .3s cubic-bezier(0,0,.5,1)
+
+}
+
+.cardTest:hover {
+  box-shadow: 2px 4px 16px #00000029;
+  transform: scale3d(1.02, 1.02, 1.02);
+}
+
+
+.card-img {
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 5px;
+}
+
+.card-description{
+  padding-top: 15px;
+}
