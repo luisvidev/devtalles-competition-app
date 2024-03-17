@@ -80,13 +80,11 @@ export const RaffleDetail = ({
       <div
         className="my-6 flex items-center justify-center w-100 h-80 bg-cover bg-center rounded-lg"
         style={{ backgroundImage: `url(${imageUrl})` }}
-      >
-        THIS IS THE BANNER
-      </div>
+      ></div>
 
-      <div className="flex justify-between pt-8">
+      <div className="flex justify-between pt-8 py-10">
         <h1 className="text-5xl font-extrabold dark:text-white">{name}</h1>
-        <div className="flex gap-x-4">
+        <div className="flex items-start gap-x-4">
           <button
             type="button"
             className="focus:outline-none text-white bg-primary hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
@@ -106,14 +104,14 @@ export const RaffleDetail = ({
 
       <div className="py-10">
         <h2 className="text-4xl font-bold dark:text-white mb-3">Descripción</h2>
-        <p className="text-gray-600">{description}</p>d
+        <p className="text-gray-600 text-justify">{description}</p>
       </div>
 
       <div className="py-10">
         <h2 className="text-4xl font-bold dark:text-white mb-3">
           Terminos y condiciones
         </h2>
-        <p className="text-gray-600">{termsAndConditions}</p>
+        <p className="text-gray-600 text-justify">{termsAndConditions}</p>
       </div>
 
       <div className="py-10">
