@@ -129,22 +129,23 @@ export const RaffleDetail = ({
       </div>
 
       <div className="py-4 flex justify-between">
-        <div>
-          <label>Fecha de creación del sorteo:</label>
-          <p>{dayjs(createdAt).format("YYYY/MM/DD HH:mm:ss")}</p>
+        <div  className="rounded-xl bg-gray-300 rounded-tl rounded-br border border-solid p-7">
+          <label className="text-primary text-xl font-bold">Fecha de creación del sorteo:</label>
+          <p className="text-gray-900 text-lg">{dayjs(createdAt).format("YYYY/MM/DD HH:mm:ss")}</p>
         </div>
-        <div>
-          <label>Creado por:</label>
-          <p>{authorEmail}</p>
+        <div  className="rounded-xl bg-gray-300 rounded-tl rounded-br border border-solid p-7">
+          <label className="text-primary text-xl font-bold">Creado por:</label>
+          <p className="text-gray-900 text-lg">{authorEmail}</p>
         </div>
-        <div>
-          <label>Total participantes:</label>
-          <p>{totalParticipants}</p>
+        <div  className="rounded-xl bg-gray-300 rounded-tl rounded-br border border-solid p-7">
+          <label className="text-primary text-xl font-bold">Total participantes:</label>
+          <p className="text-gray-900 text-lg">{totalParticipants}</p>
         </div>
       </div>
-
-      <h3 className="text-xl font-bold">Premio/s</h3>
+      <h3 className="text-xl font-bold flex items-center justify-center pb-5">Premio/s</h3>
+      <div className="flex flex-row items-center justify-center">
       <Prizes prizes={prizes} />
+      </div>
     </div>
   );
 };
