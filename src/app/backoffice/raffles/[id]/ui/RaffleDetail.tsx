@@ -6,6 +6,7 @@ import React from "react";
 import { DeleteRaffleButton } from "./DeleteRaffleButton";
 import Countdown from "react-countdown";
 import { Prizes } from "./Prizes";
+import { RaffleCountDown } from "./RaffleCountDown";
 
 interface Props {
   raffle: Raffle;
@@ -95,13 +96,6 @@ export const RaffleDetail = ({
         </div>
       </div>
 
-      {showCountdown && (
-        <div>
-          <h2>Tiempo restante para para que finalice el sorteo:</h2>
-          <Countdown date={endAt} renderer={rendererInCountDown} />
-        </div>
-      )}
-
       <div className="py-10">
         <h2 className="text-4xl font-bold dark:text-white mb-3">Descripción</h2>
         <p className="text-gray-600 text-justify">{description}</p>
@@ -168,6 +162,12 @@ export const RaffleDetail = ({
           </div>
         </div>
       </div>
+
+      {showCountdown && (
+        <div className="py-10">
+          <RaffleCountDown endAt={endAt} />
+        </div>
+      )}
 
       <div className="py-10">
         <h2 className="text-4xl font-bold dark:text-white mb-3">Premio/s</h2>

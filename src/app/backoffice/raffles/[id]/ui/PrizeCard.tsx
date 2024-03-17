@@ -49,7 +49,7 @@ export const PrizeCard = ({ prize }: Props) => {
             Ganador 🎉:
           </h4>
           <h1 className="mb-4 font-extrabold text-gray-900 dark:text-white text-lg ">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-orange-300">
               {prize.winnerEmail}
             </span>
           </h1>
