@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { getRaffles } from "@/actions/raffles/getRaffles";
 
-const Raffles = () => {
+export default async function RafflePage() {
   const data = [
     {
       id: "1",
@@ -96,15 +97,21 @@ const Raffles = () => {
     },
   ];
 
+  const response = await getRaffles({ page: 1, take: 12 });
+  const { raffles, currentPage, totalPages } = response;
+
   return (
     <section className="h-dvh p-4">
       <h1 className="text-6xl font-bold">Sorteos</h1>
       <p className="text-gray-600">Listado de sorteos disponibles</p>
       <article className="grid grid-cols-3 place-content-center place-items-center p-8 gap-4">
-        {data.map((item) => (
+        {raffles.map((item) => (
           <div key={item.id} className="p-4 shadow rounded flex flex-col w-3/4">
             <Image
-              src={item.imageUrl}
+              src={
+                item.imageUrl ||
+                "https://media.licdn.com/dms/image/C4E0BAQHZYYIUKBtZNw/company-logo_200_200/0/1677855312170/devtalles_logo?e=2147483647&v=beta&t=OZpWhXCaIPtwzdat0Dz7zpZLmLJhO7pn5GjsqW8yVDg"
+              }
               alt="banner"
               className="self-center"
               width={200}
@@ -112,7 +119,9 @@ const Raffles = () => {
             />
             <div className="p-2">
               <h4 className="text-xl font-bold">{item.name}</h4>
-              <p className="text-gray-500 text-xs">creado: {item.createdAt}</p>
+              <p className="text-gray-500 text-xs">
+                creado: {item.createdAt.toString()}
+              </p>
             </div>
             <div className="p-2">
               <p>{item.description}</p>
@@ -129,6 +138,4 @@ const Raffles = () => {
       </article>
     </section>
   );
-};
-
-export default Raffles;
+}
