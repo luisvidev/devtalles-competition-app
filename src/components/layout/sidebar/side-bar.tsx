@@ -1,4 +1,4 @@
-import LogoutButton from "@/app/backoffice/raffles/ui/LogoutButton";
+import { LogoutButton } from "@/components/auth";
 import MenuSideBar from "./menu-side-bar";
 
 export const SideBar = () => {

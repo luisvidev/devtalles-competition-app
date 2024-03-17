@@ -1,7 +1,7 @@
 import React from "react";
-import LogoutButton from "./ui/LogoutButton";
 import { getRaffles } from "@/actions/raffles/getRaffles";
 import { RaffleList } from "@/components/Raffles/RaffleList";
+import { LogoutButton } from "@/components/auth";
 
 interface Props {
   searchParams: {

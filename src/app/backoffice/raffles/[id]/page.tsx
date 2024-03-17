@@ -1,9 +1,10 @@
 import { getRaffleById } from "@/actions/raffles/getRaffleById";
 import { redirect } from "next/navigation";
 import React from "react";
-import { GoBackButton } from "../ui/GoBackButton";
+import dayjs from "dayjs";
 import { RaffleDetail } from "./ui/RaffleDetail";
 import "../../../../styles/RaffleCardDetails.css";
+import { GoBackButton } from "@/components/layout/common/GoBackButton";
 
 interface Props {
   params: {
