@@ -7,6 +7,8 @@ declare module "next-auth" {
       name: string;
       email: string;
       role: string;
+      image?: string; // Only available for users logged in with Discord
+      accessToken?: string; // Only available for users logged in with Discord
     } & DefaultSession["user"];
   }
 }

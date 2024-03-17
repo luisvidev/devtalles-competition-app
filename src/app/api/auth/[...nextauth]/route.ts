@@ -10,6 +10,9 @@ const providers = {
   discord: "discord",
 };
 
+// https://discord.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes
+const scopes = ["identify", "guilds", "email"].join(" ");
+
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/signin", // Regular users sign-in page (NOT ADMIN)
@@ -64,6 +67,7 @@ export const authOptions: NextAuthOptions = {
       id: providers.discord,
       clientId: process.env.DISCORD_CLIENT_ID || "",
       clientSecret: process.env.DISCORD_CLIENT_SECRET || "",
+      authorization: { params: { scope: scopes } },
     }),
   ],
   session: {
@@ -71,9 +75,33 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, account, profile }) {
+      const provider = account?.provider;
+      const isDiscordLogin = provider === providers.discord;
+
+      // Forward the access token to the session token
+      if (account && isDiscordLogin) {
+        token.accessToken = account.access_token;
+      }
+
       const userInDB = await prisma.user.findUnique({
         where: { email: token.email || "" },
       });
+
+      // when user is logged in with Discord for first time
+      if (!userInDB && isDiscordLogin) {
+        const newUser = await prisma.user.create({
+          data: {
+            email: token.email || "",
+            password: "",
+            name: token.name || "",
+            role: "user",
+          },
+        });
+
+        token.role = newUser?.role || "";
+        token.id = newUser?.id || "";
+        return token;
+      }
 
       token.role = userInDB?.role || "";
       token.id = userInDB?.id || "";
@@ -85,6 +113,7 @@ export const authOptions: NextAuthOptions = {
       if (session && session.user) {
         session.user.role = (token.role || "") as string;
         session.user.id = (token.id || "") as string;
+        session.user.accessToken = (token.accessToken || "") as string;
       }
 
       return session;
