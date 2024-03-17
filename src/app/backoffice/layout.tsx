@@ -1,6 +1,8 @@
 import { auth } from "@/auth.config";
 import { SideBar } from "@/components/layout/sidebar";
 import { redirect } from "next/navigation";
+import Image from "next/image";
+import "../../styles/RaffleCardDetails.css";
 
 export default async function AdminDashboardLayout({
   children,
@@ -14,15 +16,17 @@ export default async function AdminDashboardLayout({
   }
 
   return (
-    <div className="w-full grid">
-      <div className="min-h-full ml-72">
-        <header className="fixed pointer-events-none inset-0 z-40 flex">
-          <SideBar />
-        </header>
-        <div className="relative h-full bg-background">
-          <div className=" flex h-full flex-col px-4 pt-14 ">{children}</div>
+    <>
+      <header className="w-full sticky pointer-events-none inset-0 z-40 flex h-24 border border-solid bg-white p-0 headerContainer">
+        <Image src="/guitar.png" width={70} height={20} alt="logo" />
+        <h1 className="text-2xl font-bold">{"<ControlAltElite/>"}</h1>
+      </header>
+      <div className="detailPage flex p-0">
+        <SideBar />
+        <div className="container-principal-layaut h-full w-full">
+          {children}
         </div>
       </div>
-    </div>
+    </>
   );
 }

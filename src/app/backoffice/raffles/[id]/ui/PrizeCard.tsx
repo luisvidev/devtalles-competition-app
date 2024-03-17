@@ -18,15 +18,15 @@ export const PrizeCard = ({ prize }: Props) => {
   };
 
   return (
-    <li className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <li className="max-w-sm items-center p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="py-4">
-        <label>Nombre</label>
-        <p>{prize.name}</p>
+        <label className="text-primary text-xl font-bold">Premio</label>
+        <p className="text-gray-900 text-lg">{prize.name}</p>
       </div>
       {prize.description && (
         <div className="py-4">
-          <label>Desripción del premio</label>
-          <p>{prize.description}</p>
+          <label className="text-primary text-xl font-bold">Desripción del premio</label>
+          <p className="text-gray-900 text-lg">{prize.description}</p>
         </div>
       )}
       {!prize.winnerId && (
@@ -41,7 +41,7 @@ export const PrizeCard = ({ prize }: Props) => {
         </div>
       )}
 
-      {prize.winnerEmail && <div>El ganador es: {prize.winnerEmail}</div>}
+      {prize.winnerEmail && <div className="text-primary text-xl font-bold">El ganador es: {prize.winnerEmail}</div>}
     </li>
   );
 };

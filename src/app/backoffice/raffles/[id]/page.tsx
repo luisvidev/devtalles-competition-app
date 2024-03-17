@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import dayjs from "dayjs";
 import { RaffleDetail } from "./ui/RaffleDetail";
+import "../../../../styles/RaffleCardDetails.css";
 import { GoBackButton } from "@/components/layout/common/GoBackButton";
 
 interface Props {
@@ -22,7 +23,7 @@ export default async function RaffleDetailPage({ params }: Props) {
   }
 
   return (
-    <section className="contaner-pege-description p-10">
+      <section className="contaner-pege-description container-principal-layaut p-10">
       <GoBackButton />
       <RaffleDetail
         raffle={raffle}
