@@ -5,11 +5,11 @@ export default function Home() {
         <>
             <section className="flex flex-col items-center justify-center h-dvh">
                 <h1 className=" w-1/2 text-8xl font-bold text-balance text-center">
-                    dev/taLLes Giveaways
+                    dev/taLLes Sorteos
                 </h1>
                 <h3 className="w-1/3 text-balance text-2xl text-gray-500 py-2 text-center font-semibold">
-                    Participate in our exclusive giveaways. Every Giveaway Is a
-                    New Adventure!.
+                    Participa en nuestros exclusivos sorteos. Cada sorteo es una
+                    nueva aventura!
                 </h3>
                 <Link
                     href="https://discord.com/invite/pBjEVYTC7t"
