@@ -8,15 +8,14 @@ import { Raffle } from "@/types";
 import dayjs from "@/lib/dayjs";
 
 interface Props {
-  raffles: Raffle[]
+  raffles: Raffle[];
 }
 
 export const RaffleList = ({ raffles }: Props) => {
-
   const showCountdown = dayjs().isBefore(dayjs());
 
   return (
-    <ul className="containerCard  my-10">
+    <div className="containerCard  my-10">
       {raffles.map((raffle) => (
         <Link
           key={raffle.id}
@@ -29,8 +28,8 @@ export const RaffleList = ({ raffles }: Props) => {
                 <Image
                   className="object-cover w-full h-52"
                   src={`${raffle?.imageUrl}`}
-                  width={350}
-                  height={350}
+                  width={300}
+                  height={300}
                   alt="imagen sorteo"
                 />
               </div>
@@ -42,12 +41,15 @@ export const RaffleList = ({ raffles }: Props) => {
                   <span className="font-bold">Zona Horaria:</span>{" "}
                   {raffle.timezone}
                 </p>
-                <p className="text-sm g-3 p-1 shadow-sm rounded-md text-orange-400"><span className="text-black">Fin Sorteo: </span>{dayjs(raffle.endAt).format('DD-MM-YY HH:mm')}</p>
+                <p className="text-sm g-3 p-1 shadow-sm rounded-md text-orange-400">
+                  <span className="text-black">Fin Sorteo: </span>
+                  {dayjs(raffle.endAt).format("DD-MM-YY HH:mm")}
+                </p>
               </div>
             </CardContent>
           </Card>
         </Link>
       ))}
-    </ul>
+    </div>
   );
 };

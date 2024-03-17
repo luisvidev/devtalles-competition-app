@@ -16,9 +16,9 @@ export default async function RafflesPage({ searchParams }: Props) {
   const { raffles, currentPage, totalPages } = response;
 
   return (
-    <div className="min-h-screen pt-10 bg-custom">
-      {/* <h2>Sorteos - Devtalles</h2> */}
-      <RaffleList raffles={raffles} />
-    </div>
+    <>
+    <RaffleList raffles={raffles} />
+    </>
+
   );
 }

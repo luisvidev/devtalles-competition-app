@@ -78,7 +78,7 @@ export const RaffleDetail = ({
   return (
     <div>
       <div
-        className="my-6 flex items-center justify-center w-100 h-80 bg-cover bg-center rounded-lg"
+        className="my-6 flex items-center justify-center w-100 h-80 bg-contain bg-center rounded-lg bg-no-repeat"
         style={{ backgroundImage: `url(${imageUrl})` }}
       >
         {/* THIS IS THE BANNER */}
