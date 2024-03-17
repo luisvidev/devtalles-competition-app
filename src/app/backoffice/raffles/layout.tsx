@@ -13,5 +13,5 @@ export default async function AdminDashboardLayout({
     return redirect("/auth/login");
   }
 
-  return <main className="">{children}</main>;
+  return <main className="min-h-screen">{children}</main>;
 }
