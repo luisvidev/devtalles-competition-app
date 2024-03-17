@@ -15,9 +15,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { login, statusLogin } from "@/actions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const FormSchema = z.object({
   email: z.string().email({
@@ -29,15 +29,9 @@ const FormSchema = z.object({
 });
 
 export const UserAuthForm = () => {
-  const [state, setState] = useState<statusLogin>();
+  const [state, setState] = useState<string>();
 
   const router = useRouter();
-
-  useEffect(() => {
-    if (state === "success") {
-      router.replace("/backoffice/raffles");
-    }
-  }, [state]);
 
   // TODO: improve the way that the form is working
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -49,11 +43,17 @@ export const UserAuthForm = () => {
   });
 
   const onSubmit = async ({ email, password }: z.infer<typeof FormSchema>) => {
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-    const stateLogin: statusLogin = await login("", formData);
-    setState(stateLogin);
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (result?.ok) {
+      router.replace("/backoffice/raffles");
+    } else {
+      setState(result?.error || "Error en el inicio de sesión");
+    }
   };
 
   return (

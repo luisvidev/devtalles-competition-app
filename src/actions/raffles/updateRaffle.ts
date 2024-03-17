@@ -1,7 +1,8 @@
 "use server";
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
-import { auth } from "@/auth.config";
+import { getServerSession } from "next-auth";
 import { z } from "zod";
 
 interface Props {
@@ -45,7 +46,7 @@ const addRaffleSchema = z.object({
 export async function updateRaffle(props: Props) {
   const dataParsed = addRaffleSchema.safeParse(props);
 
-  const session = await auth();
+  const session = await getServerSession(authOptions);
   if (session?.user.role !== "admin")
     throw new Error("La acción solo es permitida por un administrador");
 
