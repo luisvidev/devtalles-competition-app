@@ -8,7 +8,8 @@ export default function Home() {
                     dev/taLLes Giveaways
                 </h1>
                 <h3 className="w-1/3 text-balance text-2xl text-gray-500 py-2 text-center font-semibold">
-                    Participate in our exclusive giveaways. Every Giveaway Is a New Adventure!.
+                    Participate in our exclusive giveaways. Every Giveaway Is a
+                    New Adventure!.
                 </h3>
                 <Link
                     href="https://discord.com/invite/pBjEVYTC7t"
@@ -17,7 +18,6 @@ export default function Home() {
                     Join Discord
                 </Link>
             </section>
-            
         </>
     );
 }

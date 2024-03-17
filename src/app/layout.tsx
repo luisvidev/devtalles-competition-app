@@ -19,7 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${inter.className} grid min-h-full relative`}>{children}</body>
+      <body className={`${inter.className} grid min-h-full relative`}>
+        <NavBar/>
+        {children}
+        </body>
     </html>
   );
 }
