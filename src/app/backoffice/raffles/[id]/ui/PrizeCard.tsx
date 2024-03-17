@@ -18,7 +18,7 @@ export const PrizeCard = ({ prize }: Props) => {
   };
 
   return (
-    <li className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <li className="bg-white p-4 rounded-lg shadow-md">
       <div className="py-4">
         <label>Nombre</label>
         <p>{prize.name}</p>

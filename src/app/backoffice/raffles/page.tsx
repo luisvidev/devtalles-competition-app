@@ -19,7 +19,6 @@ export default async function RafflesPage({ searchParams }: Props) {
     <div className="container p-10">
       <h2>Sorteos - Devtalles</h2>
       <RaffleList raffles={raffles} />
-      <LogoutButton />
     </div>
   );
 }

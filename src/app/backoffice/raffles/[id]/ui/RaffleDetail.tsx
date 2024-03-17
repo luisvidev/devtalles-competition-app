@@ -85,7 +85,7 @@ export const RaffleDetail = ({
       </div>
 
       <div className="flex justify-between pt-8">
-        <h1 className="text-2xl font-bold">{name}</h1>
+        <h1 className="text-5xl font-extrabold dark:text-white">{name}</h1>
         <div className="flex gap-x-4">
           <button
             type="button"
@@ -104,47 +104,77 @@ export const RaffleDetail = ({
         </div>
       )}
 
-      <div className="py-4">
-        <label>Descripción</label>
-        <p>{description}</p>
-      </div>
-      <div className="py-4">
-        <label>Terminos y condiciones</label>
-        <p>{termsAndConditions}</p>
+      <div className="py-10">
+        <h2 className="text-4xl font-bold dark:text-white mb-3">Descripción</h2>
+        <p className="text-gray-600">{description}</p>d
       </div>
 
-      <div className="py-4 flex justify-between">
-        <div>
-          <label>Fecha de finalización en hora local:</label>
-          <p>{dayjs(endAt).format("YYYY/MM/DD HH:mm:ss")}</p>
-        </div>
-        <div>
-          <label>Finaliza en la fecha:</label>
-          <p>{dayjs(endAt).tz(timezone).format("YYYY/MM/DD HH:mm:ss")}</p>
-        </div>
-        <div>
-          <label>Zona horaria:</label>
-          <p>{timezone}</p>
+      <div className="py-10">
+        <h2 className="text-4xl font-bold dark:text-white mb-3">
+          Terminos y condiciones
+        </h2>
+        <p className="text-gray-600">{termsAndConditions}</p>
+      </div>
+
+      <div className="py-10">
+        <h2 className="text-4xl font-bold dark:text-white mb-3">
+          Información general
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-4 py-4">
+          <div className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+            <h4 className="text-lg font-semibold dark:text-white mb-3">
+              Fecha de finalización en hora local:
+            </h4>
+            <p className="text-gray-600">
+              {dayjs(endAt).format("YYYY/MM/DD HH:mm:ss")}
+            </p>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+            <h4 className="text-lg font-semibold dark:text-white mb-3">
+              Finaliza en la fecha:
+            </h4>
+            <p className="text-gray-600">
+              {dayjs(endAt).tz(timezone).format("YYYY/MM/DD HH:mm:ss")}
+            </p>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+            <h4 className="text-lg font-semibold dark:text-white mb-3">
+              Zona horaria:
+            </h4>
+            <p className="text-gray-600">{timezone}</p>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+            <h4 className="text-lg font-semibold dark:text-white mb-3">
+              Fecha de creación del sorteo:
+            </h4>
+            <p className="text-gray-600">
+              {dayjs(createdAt).format("YYYY/MM/DD HH:mm:ss")}
+            </p>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+            <h4 className="text-lg font-semibold dark:text-white mb-3">
+              Creado por:
+            </h4>
+            <p className="text-gray-600">{authorEmail}</p>
+          </div>
+
+          <div className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+            <h4 className="text-lg font-semibold dark:text-white mb-3">
+              Total participantes:
+            </h4>
+            <p className="text-gray-600">{totalParticipants}</p>
+          </div>
         </div>
       </div>
 
-      <div className="py-4 flex justify-between">
-        <div>
-          <label>Fecha de creación del sorteo:</label>
-          <p>{dayjs(createdAt).format("YYYY/MM/DD HH:mm:ss")}</p>
-        </div>
-        <div>
-          <label>Creado por:</label>
-          <p>{authorEmail}</p>
-        </div>
-        <div>
-          <label>Total participantes:</label>
-          <p>{totalParticipants}</p>
-        </div>
+      <div className="py-10">
+        <h2 className="text-4xl font-bold dark:text-white mb-3">Premio/s</h2>
+        <Prizes prizes={prizes} />
       </div>
-
-      <h3 className="text-xl font-bold">Premio/s</h3>
-      <Prizes prizes={prizes} />
     </div>
   );
 };

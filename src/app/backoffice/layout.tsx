@@ -20,7 +20,9 @@ export default async function AdminDashboardLayout({
           <SideBar />
         </header>
         <div className="relative h-full bg-background">
-          <div className=" flex h-full flex-col px-4 pt-14 ">{children}</div>
+          <div className=" flex h-full flex-col px-4 pt-14 max-w-7xl">
+            {children}
+          </div>
         </div>
       </div>
     </div>
