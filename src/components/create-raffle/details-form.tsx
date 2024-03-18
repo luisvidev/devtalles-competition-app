@@ -46,6 +46,7 @@ export const DetailsForm = () => {
           <Label htmlFor="description">Descripción</Label>
           <Textarea
             id="description"
+            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Añade una descripcion al sorteo"
@@ -55,6 +56,7 @@ export const DetailsForm = () => {
           <Label htmlFor="image">Imagen</Label>
           <Input
             id="image"
+            required
             type="text"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
@@ -64,6 +66,7 @@ export const DetailsForm = () => {
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="termsAndConditions">Terminos y condiciones</Label>
           <Textarea
+            required
             id="termsAndConditions"
             placeholder="Añade los terminos y condiciones de tu sorteo"
             value={termsAndConditions}

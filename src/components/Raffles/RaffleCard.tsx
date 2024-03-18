@@ -14,7 +14,7 @@ export const RaffleCard = ({ raffle, redirectTo }: Props) => {
   const isFinished = dayjs().isSame(endAt) || dayjs().isAfter(endAt);
   const isAboutToEnd = !isFinished && dayjs(endAt).diff(dayjs(), "days") < 1;
   const isInProgress = !isFinished && !isAboutToEnd;
-
+  const urlRegex = /^(?:https?:\/\/)?(?:www\.)?[^\s.]+\.\S+$/;
   return (
     <Link key={raffle.id} className="flex flex-col" href={redirectTo}>
       <div className=" flex flex-col justify-between flex-grow bg-white rounded-lg shadow-md overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-lg">
@@ -23,7 +23,11 @@ export const RaffleCard = ({ raffle, redirectTo }: Props) => {
             className="rounded-t-lg h-40 bg-cover bg-center"
             width={400}
             height={400}
-            src={raffle.imageUrl || "/default_banner.png"}
+            src={
+              raffle.imageUrl && urlRegex.test(raffle.imageUrl)
+                ? raffle.imageUrl
+                : "/default_banner.png"
+            }
             alt="Raffle picture"
           />
           <div className="px-4 pt-4 grid grid-rows-2 justify-between">

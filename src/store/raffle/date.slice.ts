@@ -10,7 +10,7 @@ export interface DateSlice {
 
 export const createDateSlice: StateCreator<DateSlice> = (set, get) => ({
   startDate: new Date(),
-  endDate: undefined,
+  endDate: new Date(),
 
   setStartDate: (startDate: Date | undefined) => {
     if (!startDate) return;

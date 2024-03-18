@@ -58,8 +58,6 @@ export default function CreateRafflePage() {
   const prizes = useRaffleBoundStore((state) => state.prizes);
 
   const submitForm = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
     // Send request
     if (currentStepIndex === 2) {
       console.log(e.target);
@@ -84,6 +82,7 @@ export default function CreateRafflePage() {
 
         if (response.ok) {
           alert(`success`);
+
           redirect("/backoffice/raffles");
         }
         if (!response.ok) alert(`error: ${response.errorMessage}`);
@@ -91,6 +90,7 @@ export default function CreateRafflePage() {
         alert(`error: ${(error as Error).message}`);
       }
     } else {
+      e.preventDefault();
       next();
     }
 
