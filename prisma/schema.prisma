@@ -27,7 +27,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   /// This field is the raffle created by an user ADMIN
-  raffle    Raffle?
+  raffles   Raffle[]
 
   subscriptions Subscription[]
 }
@@ -42,7 +42,7 @@ model Raffle {
   createdAt          DateTime       @default(now())
   updatedAt          DateTime       @updatedAt
   endAt              DateTime
-  authorId           String         @unique
+  authorId           String
   author             User           @relation(fields: [authorId], references: [id])
   prizes             Prize[]
   subscribers        Subscription[]

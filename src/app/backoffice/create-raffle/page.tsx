@@ -1,8 +1,8 @@
 "use client";
+import { addRaffle } from "@/actions/raffles/addRaffle";
 import { DateForm } from "@/components/create-raffle/date-form";
 import { DetailsForm } from "@/components/create-raffle/details-form";
 import { PrizeForm } from "@/components/create-raffle/prize-form";
-import { MultiStep } from "@/components/multi-step/multi-step";
 import { ProgresBar } from "@/components/multi-step/progres-bar";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,18 +13,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useMultiStep } from "@/hooks/useMultiStep";
+import { useRaffleBoundStore } from "@/store/raffle";
 import {
   CalendarIcon,
   CaretLeftIcon,
   CaretRightIcon,
-  CheckIcon,
   ListBulletIcon,
-  LockClosedIcon,
   PlusCircledIcon,
-  StarIcon,
 } from "@radix-ui/react-icons";
+import { redirect } from "next/navigation";
 import { FormEvent } from "react";
-import { text } from "stream/consumers";
+import Swal from "sweetalert2";
 
 const steps = [
   {
@@ -49,10 +48,57 @@ export default function CreateRafflePage() {
     steps.map((step) => step.step)
   );
 
-  const submitForm = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    next();
+  const name = useRaffleBoundStore((state) => state.name);
+  const description = useRaffleBoundStore((state) => state.description);
+  const termsAndConditions = useRaffleBoundStore(
+    (state) => state.termsAndConditions
+  );
+  const endDate = useRaffleBoundStore((state) => state.endDate);
+  const imageUrl = useRaffleBoundStore((state) => state.imageUrl);
+  const prizes = useRaffleBoundStore((state) => state.prizes);
+
+  const submitForm = async (e: FormEvent<HTMLFormElement>) => {
+    // Send request
+    if (currentStepIndex === 2) {
+      console.log(e.target);
+
+      try {
+        const response = await addRaffle({
+          raffle: {
+            name,
+            description,
+            termsAndConditions,
+            timezone: "America/Toronto",
+            endAt: endDate,
+            imageUrl,
+          },
+          prizes: prizes.map(
+            ({ prizeName: name, prizeDescription: description }) => ({
+              name,
+              description,
+            })
+          ),
+        });
+
+        if (response.ok) {
+          alert(`success`);
+
+          redirect("/backoffice/raffles");
+        }
+        if (!response.ok) alert(`error: ${response.errorMessage}`);
+      } catch (error) {
+        alert(`error: ${(error as Error).message}`);
+      }
+    } else {
+      e.preventDefault();
+      next();
+    }
+
+    console.log({ e, currentStepIndex });
+
+    // addRaffle()
   };
+
   return (
     <section className="">
       <Card className="max-w-6xl mx-auto mt-12 overflow-hidden">

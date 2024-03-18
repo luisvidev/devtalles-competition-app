@@ -74,9 +74,14 @@ export async function addRaffle(props: Props) {
       data: newPrizes,
     });
 
-    return true;
+    return {
+      ok: true,
+    };
   } catch (error) {
-    console.log(error);
-    throw error;
+    console.log({ name: "Action Server Error: addRaffle", error });
+    return {
+      ok: false,
+      errorMessage: (error as Error).message,
+    };
   }
 }

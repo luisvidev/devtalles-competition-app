@@ -1,5 +1,6 @@
 import { CardStackIcon, FilePlusIcon } from "@radix-ui/react-icons";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
+import { MagicWandIcon } from "@radix-ui/react-icons";
 
 interface Route {
   path: string;
