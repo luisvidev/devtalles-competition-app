@@ -15,9 +15,12 @@ export default async function RafflesPage({ searchParams }: Props) {
   const response = await getRaffles({ page });
   const { raffles, currentPage, totalPages } = response;
 
+  // TODO: RENDER TOTAL RAFFLES
   return (
-    <div className="container p-10">
-      <h2>Sorteos - Devtalles</h2>
+    <div>
+      <h1 className="text-2xl font-semibold dark:text-white mb-3">
+        Sorteos (100)
+      </h1>
       <RaffleList raffles={raffles} />
     </div>
   );

@@ -1,7 +1,20 @@
+"use client";
+
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { LogoutButton } from "./auth";
+import { useEffect } from "react";
 
 const NavBar = () => {
+  // TODO: remove this consoles
+  const { data: session } = useSession();
+  console.log({ session });
+
+  useEffect(() => {
+    console.log({ session });
+  }, [session]);
+
   return (
     <header className="px-8 bg-primary flex justify-between items-center sticky top-0 z-10 h-16">
       <Link href="/">
@@ -18,6 +31,7 @@ const NavBar = () => {
           <Link href="/login">
             <li className="hover:text-indigo-700">Login</li>
           </Link>
+          <LogoutButton></LogoutButton>
           {/*
                     Final section to add team info 
                     <Link href="/register">

@@ -1,8 +1,9 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { auth } from "@/auth.config";
 import { z } from "zod";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 interface Props {
   raffle: {
@@ -41,7 +42,7 @@ const addRaffleSchema = z.object({
 export async function addRaffle(props: Props) {
   const dataParsed = addRaffleSchema.safeParse(props);
 
-  const session = await auth();
+  const session = await getServerSession(authOptions);
   if (session?.user.role !== "admin")
     throw new Error("La acción solo es permitida por un administrador");
 

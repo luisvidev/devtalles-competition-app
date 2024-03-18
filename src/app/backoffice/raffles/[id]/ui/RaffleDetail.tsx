@@ -112,7 +112,7 @@ export const RaffleDetail = ({
         <h2 className="text-4xl font-bold dark:text-white mb-3">
           Información general
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-4 py-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
           <div className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
             <h4 className="text-lg font-semibold dark:text-white mb-3">
               Fecha de finalización en hora local:
