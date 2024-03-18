@@ -1,7 +1,6 @@
 import { getRaffleById } from "@/actions/raffles/getRaffleById";
 import { redirect } from "next/navigation";
 import React from "react";
-import dayjs from "dayjs";
 import { RaffleDetail } from "./ui/RaffleDetail";
 import { GoBackButton } from "@/components/layout/common/GoBackButton";
 

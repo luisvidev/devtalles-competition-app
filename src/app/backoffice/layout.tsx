@@ -25,7 +25,7 @@ export default async function AdminDashboardLayout({
             <SideBar />
           </header>
           <div>
-            <div className="h-full pl-52 w-auto py-5">{children}</div>
+            <div className="h-full pl-56 w-auto py-5">{children}</div>
           </div>
         </div>
       </div>
