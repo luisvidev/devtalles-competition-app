@@ -57,6 +57,7 @@ export const PrizeForm = () => {
         <div className="mt-2">
           {prizes.map((prize) => (
             <PrizeItem
+              key={prize.id}
               id={prize.id}
               title={prize.prizeName}
               description={prize.prizeDescription}

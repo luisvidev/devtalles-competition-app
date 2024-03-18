@@ -2,7 +2,7 @@ import { useSession, signIn } from "next-auth/react";
 import { SideBar } from "@/components/layout/sidebar";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 import NavBar from "@/components/NavBar";
 
 export default async function AdminDashboardLayout({

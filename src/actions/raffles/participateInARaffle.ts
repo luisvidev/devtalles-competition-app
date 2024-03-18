@@ -1,6 +1,6 @@
 "use server";
 
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 import dayjs from "@/lib/dayjs";
 import prisma from "@/lib/prisma";
 import { Guild } from "@/types/Guild.type";

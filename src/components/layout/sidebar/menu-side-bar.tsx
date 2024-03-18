@@ -16,11 +16,10 @@ export default function MenuSideBar() {
   const hoverBackDrop = useElementBackDrop(parentRef);
 
   useEffect(() => {
-    console.log("pathName");
     if (activeLink && activeLink.current) {
       menu.setTop(activeLink.current);
     }
-  }, [activeLink.current]);
+  }, [menu]);
 
   return (
     <div>
