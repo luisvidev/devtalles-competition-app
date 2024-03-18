@@ -16,7 +16,7 @@ export default async function AdminDashboardLayout({
   return (
     <div className="w-full grid">
       <div className="min-h-full ml-72">
-        <header className="fixed pointer-events-none inset-0 z-40 flex">
+        <header className="mt-16 fixed pointer-events-none inset-0 z-40 flex">
           <SideBar />
         </header>
         <div className="relative h-full bg-background">
