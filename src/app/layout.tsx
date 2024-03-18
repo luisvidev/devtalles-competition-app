@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/components/auth";
 
 //* Components
 import NavBar from "../components/NavBar";
@@ -18,11 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body className={`${inter.className} grid min-h-full relative`}>
-        <NavBar />
-        {children}
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en" className="h-full">
+        <body className={`${inter.className} min-h-full`}>
+          <NavBar />
+          {children}
+        </body>
+      </html>
+    </AuthProvider>
   );
 }
