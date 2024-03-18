@@ -11,11 +11,15 @@ export default async function RafflePage() {
   return (
     <section className="h-dvh p-4">
       <h1 className="text-3xl font-bold mb-6">Sorteos</h1>
-      <article className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {raffles.map((raffle) => (
-          <RaffleCard key={raffle.id} raffle={raffle} />
+          <RaffleCard
+            key={raffle.id}
+            raffle={raffle}
+            redirectTo={`/raffles/${raffle.id}`}
+          />
         ))}
-      </article>
+      </ul>
     </section>
   );
 }

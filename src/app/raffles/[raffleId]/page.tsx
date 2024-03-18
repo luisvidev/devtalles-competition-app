@@ -12,7 +12,7 @@ const RaffleDetail = async ({ params }: Props) => {
   const { raffle, prizes } = await getRaffleById(raffleId);
 
   return (
-    <section className="h-dvh px-4 py-8">
+    <section className="h-dvh">
       <h1 className="text-4xl my-2 font-bold">{raffle!.name}</h1>
       <p className="text-slate-700">
         <span className="font-bold text-xs">

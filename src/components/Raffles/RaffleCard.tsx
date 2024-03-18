@@ -5,12 +5,13 @@ import Link from "next/link";
 
 interface Props {
   raffle: Raffle;
+  redirectTo: string;
 }
 
-export const RaffleCard = ({ raffle }: Props) => {
+export const RaffleCard = ({ raffle, redirectTo }: Props) => {
   const { name, description, endAt, timezone } = raffle;
   return (
-    <Link key={raffle.id} className="bodyCard" href={`/raffles/${raffle.id}`}>
+    <Link key={raffle.id} className="bodyCard" href={redirectTo}>
       <div className="max-w-sm h-auto bg-white rounded-lg shadow-md overflow-hidden transition duration-300 transform hover:scale-105 hover:shadow-lg">
         <Image
           className="rounded-t-lg h-40 bg-cover bg-center"
