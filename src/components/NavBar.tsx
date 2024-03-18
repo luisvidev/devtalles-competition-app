@@ -21,7 +21,7 @@ const NavBar = () => {
   };
 
   const handleLogout = async () => {
-    await signOut();
+    await signOut({ callbackUrl: "/" });
   };
 
   return (

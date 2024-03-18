@@ -11,6 +11,8 @@ export default async function AuthLayout({
   if (session?.user && session.user.role === "admin")
     redirect("/backoffice/raffles");
 
+  if (session?.user && session.user.role === "user") redirect("/raffles");
+
   return (
     <div className="h-screen flex items-center justify-center bg-primary">
       {children}
