@@ -13,19 +13,19 @@ export default async function AdminDashboardLayout({
   const session = await getServerSession(authOptions);
 
   if (!session?.user || session.user.role !== "admin") {
-    redirect("auth/login");
+    redirect("/auth/login");
   }
 
   return (
     <>
       <NavBar />
       <div className="w-full">
-        <div className="flex">
+        <div className="grid">
           <header className="pointer-events-none inset-0 flex fixed top-16">
             <SideBar />
           </header>
           <div>
-            <div className="h-full pl-52 w-auto py-5">{children}</div>
+            <div className="h-full pl-72 w-auto py-5">{children}</div>
           </div>
         </div>
       </div>

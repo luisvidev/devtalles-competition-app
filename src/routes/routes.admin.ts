@@ -1,4 +1,4 @@
-import { CardStackIcon } from "@radix-ui/react-icons";
+import { CardStackIcon, FilePlusIcon } from "@radix-ui/react-icons";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { MagicWandIcon } from "@radix-ui/react-icons";
 
@@ -18,13 +18,8 @@ const routesAdmin: Route[] = [
   },
   {
     path: `${adminPrefix}/create-raffle`,
-    icon: MagicWandIcon,
-    name: "Crear Sorteo",
-  },
-  {
-    path: `${adminPrefix}/participants`,
-    icon: InfoCircledIcon,
-    name: "Participantes",
+    icon: FilePlusIcon,
+    name: "Crear sorteo",
   },
 ];
 

@@ -8,6 +8,8 @@ import { RaffleCountDown } from "@/app/backoffice/raffles/[id]/ui/RaffleCountDow
 import { participateInARaffle } from "@/actions/raffles/participateInARaffle";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import "../../../../styles/RaffleCard.css";
+import Swal from "sweetalert2";
 
 interface Props {
   raffle: Raffle;
@@ -60,10 +62,20 @@ export const RaffleDetail = ({
     try {
       const response = await participateInARaffle({ raffleId });
       if (!response.ok) throw new Error(response.errorMessage);
-      alert("Success");
+      Swal.fire({
+        title: "¡Participación exitosa!",
+        text: "¡Te has inscrito en el sorteo!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
     } catch (error) {
       console.error({ error });
-      alert(`error: ${(error as Error).message}`);
+      Swal.fire({
+        title: "Error",
+        text: `Ha ocurrido un error: ${(error as Error).message}`,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
@@ -154,18 +166,25 @@ export const RaffleDetail = ({
       {isPossibleToParticipate &&
         session?.user.role !== "admin" &&
         !subscription && (
-          <button
-            onClick={handleParticipate}
-            className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
-          >
-            Participar
-          </button>
+          <>
+            <div className="text-center">
+              <h1 className="flex font-extrabold pb-10 justify-center text-4xl">
+                Participa en este gran sorteo dando click en el siguiente botón:
+              </h1>
+              <button
+                onClick={handleParticipate}
+                className="buttonSorteo flex justify-center items-center animate-soft-bounce text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-full text-2xl px-8 py-4 me-2 mb-2"
+              >
+                Participar
+              </button>
+            </div>
+          </>
         )}
 
       {isPossibleToParticipate &&
         session?.user.role !== "admin" &&
         subscription && (
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-xl">
             Te inscribiste a este sorteo el{" "}
             {dayjs(subscription.createdAt).format("YYYY/MM/DD HH:mm:ss")}! 🎊
           </p>

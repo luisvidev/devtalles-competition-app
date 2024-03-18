@@ -7,6 +7,7 @@ import { DeleteRaffleButton } from "./DeleteRaffleButton";
 import Countdown from "react-countdown";
 import { Prizes } from "./Prizes";
 import { RaffleCountDown } from "./RaffleCountDown";
+import Link from "next/link";
 
 interface Props {
   raffle: Raffle;
@@ -114,9 +115,29 @@ export const RaffleDetail = ({
 
           <div className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
             <h4 className="text-lg font-semibold dark:text-white mb-3">
-              Total participantes:
+              Total participantes: {totalParticipants}
             </h4>
-            <p className="text-gray-600">{totalParticipants}</p>
+            <Link
+              href={`/backoffice/raffles/${raffleId}/participants`}
+              className="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            >
+              Ver todos los participantes
+              <svg
+                className="w-4 h-4 ms-2 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 5h12m0 0L9 1m4 4L9 9"
+                />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>
