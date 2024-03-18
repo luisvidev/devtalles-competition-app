@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run prisma:deploy && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --ignore-path .gitignore --write \"src/**/*.+(js|jsx|ts|tsx|json)\"",
-    "seed": "ts-node src/seed/seed-database.ts"
+    "seed": "ts-node src/seed/seed-database.ts",
+    "prisma:deploy": "npx prisma migrate deploy && prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
