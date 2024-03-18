@@ -1,5 +1,5 @@
 import { getRaffleById } from "@/actions/raffles/getRaffleById";
-import { RaffleDetail } from "@/app/backoffice/raffles/[id]/ui/RaffleDetail";
+import { RaffleDetail } from "./ui/RaffleDetail";
 import { GoBackButton } from "@/components/layout/common/GoBackButton";
 
 interface Props {
@@ -14,8 +14,6 @@ const RafflePage = async ({ params }: Props) => {
   const { raffle, prizes } = await getRaffleById(raffleId);
 
   if (!raffle) return null;
-
-  console.log({ raffle });
 
   return (
     <section className="h-dvh">
