@@ -4,6 +4,15 @@ import Link from "next/link";
 import { getRaffles } from "@/actions/raffles/getRaffles";
 import { RaffleCard } from "@/components/raffles/RaffleCard";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sorteos disponibles",
+  description:
+    "La página de sorteos disponibles es un destino vibrante y emocionante para aquellos en busca de oportunidades para participar en sorteos y ganar premios emocionantes. ",
+  keywords: ["Sorteos", "informacion", "Premios", "Sorteo", "Participantes"],
+};
+
 export default async function RafflePage() {
   const response = await getRaffles({ page: 1, take: 12 });
   const { raffles, currentPage, totalPages } = response;
