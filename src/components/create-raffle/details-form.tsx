@@ -16,19 +16,21 @@ export const DetailsForm = () => {
   const termsAndConditions = useRaffleBoundStore(
     (state) => state.termsAndConditions
   );
+  const imageUrl = useRaffleBoundStore((state) => state.imageUrl);
 
   const setName = useRaffleBoundStore((state) => state.setName);
   const setDescription = useRaffleBoundStore((state) => state.setDescription);
   const setTermsAndConditions = useRaffleBoundStore(
     (state) => state.setTermsAndConditions
   );
+  const setImageUrl = useRaffleBoundStore((state) => state.setImageUrl);
 
   return (
     <SectionForm
       title="Detalles del sorteo"
       paragraph="Presenta información detallada sobre un sorteo específico. Incluye elementos como el nombre del sorteo para identificarlo fácilmente, una descripción concisa que resuma los objetivos y detalles clave del sorteo, una imagen representativa que puede visualizar el premio o capturar la esencia del evento, y términos y condiciones claros que delineen las reglas de participación"
     >
-      <article className="space-y-4">
+      <article className="space-y-4 ">
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="name">Nombre</Label>
           <Input
@@ -51,7 +53,12 @@ export const DetailsForm = () => {
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="image">Imagen</Label>
-          <Input id="image" type="file" accept="image/*" />
+          <Input
+            id="image"
+            type="text"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
         </div>
 
         <div className="grid w-full max-w-sm items-center gap-1.5">
