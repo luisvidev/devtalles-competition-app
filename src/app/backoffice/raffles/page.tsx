@@ -1,8 +1,8 @@
 import React from "react";
 import { getRaffles } from "@/actions/raffles/getRaffles";
 import { RaffleList } from "@/components/raffles/RaffleList";
-import { RaffleCard } from "@/components/raffles/RaffleCard";
 import type { Metadata } from "next";
+import { RaffleCard } from "@/components/raffles/RaffleCard";
 
 export const metadata: Metadata = {
   title: "Sorteos",
