@@ -34,48 +34,6 @@ export const RaffleDetail = ({
 
   const showCountdown = dayjs().isBefore(dayjs(endAt));
 
-  // Renderer callback with condition
-  const rendererInCountDown = (props: {
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-    completed: boolean;
-    formatted: {
-      days: string;
-      hours: string;
-      minutes: string;
-      seconds: string;
-    };
-  }) => {
-    const { formatted, days, completed } = props;
-    if (completed) {
-      return <span>You are good to go!</span>;
-    } else {
-      // TODO: this can be a component
-      return (
-        <div className="flex flex-row gap-x-4">
-          <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div>{formatted.days}</div>
-            <div>días</div>
-          </div>
-          <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div>{formatted.hours}</div>
-            <div>Horas</div>
-          </div>
-          <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div>{formatted.minutes}</div>
-            <div>Minutos</div>
-          </div>
-          <div className="flex flex-col items-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div>{formatted.seconds}</div>
-            <div>Segundos</div>
-          </div>
-        </div>
-      );
-    }
-  };
-
   return (
     <div>
       <div
