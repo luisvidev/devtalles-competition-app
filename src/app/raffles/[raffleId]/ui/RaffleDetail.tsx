@@ -7,12 +7,30 @@ import { Prizes } from "@/app/backoffice/raffles/[id]/ui/Prizes";
 import { RaffleCountDown } from "@/app/backoffice/raffles/[id]/ui/RaffleCountDown";
 import { participateInARaffle } from "@/actions/raffles/participateInARaffle";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 interface Props {
   raffle: Raffle;
   prizes: Prize[];
   authorEmail: string;
   totalParticipants: number;
+  participationResponse:
+    | {
+        ok: boolean;
+        subscription: {
+          id: string;
+          userId: string;
+          raffleId: string;
+          prizeId: string | null;
+          createdAt: Date;
+        } | null;
+        errorMessage?: undefined;
+      }
+    | {
+        ok: boolean;
+        errorMessage: string;
+        subscription?: undefined;
+      };
 }
 
 export const RaffleDetail = ({
@@ -20,6 +38,7 @@ export const RaffleDetail = ({
   prizes,
   totalParticipants,
   authorEmail,
+  participationResponse,
 }: Props) => {
   const {
     imageUrl,
@@ -32,7 +51,8 @@ export const RaffleDetail = ({
     createdAt,
   } = raffle;
 
-  const showCountdown = dayjs().isBefore(dayjs(endAt));
+  const isPossibleToParticipate = dayjs().isBefore(dayjs(endAt));
+  const { subscription } = participationResponse;
 
   const { data: session, status } = useSession();
 
@@ -50,8 +70,8 @@ export const RaffleDetail = ({
   return (
     <div>
       <div
-        className="my-6 flex items-center justify-center w-100 h-80 bg-cover bg-center rounded-lg"
         style={{ backgroundImage: `url(${imageUrl})` }}
+        className="my-6 flex items-center justify-center w-100 h-80 bg-cover bg-center rounded-lg"
       ></div>
 
       <div className="py-10">
@@ -125,20 +145,31 @@ export const RaffleDetail = ({
         </div>
       </div>
 
-      {showCountdown && (
+      {isPossibleToParticipate && (
         <div className="py-10">
           <RaffleCountDown endAt={endAt} />
         </div>
       )}
 
-      {showCountdown && session?.user.role !== "admin" && (
-        <button
-          onClick={handleParticipate}
-          className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
-        >
-          Participar
-        </button>
-      )}
+      {isPossibleToParticipate &&
+        session?.user.role !== "admin" &&
+        !subscription && (
+          <button
+            onClick={handleParticipate}
+            className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+          >
+            Participar
+          </button>
+        )}
+
+      {isPossibleToParticipate &&
+        session?.user.role !== "admin" &&
+        subscription && (
+          <p className="text-gray-600">
+            Te inscribiste a este sorteo el{" "}
+            {dayjs(subscription.createdAt).format("YYYY/MM/DD HH:mm:ss")}! 🎊
+          </p>
+        )}
 
       <div className="py-10">
         <h2 className="text-4xl font-bold dark:text-white mb-3">Premio/s</h2>

@@ -57,6 +57,20 @@ export const participateInARaffle = async ({ raffleId }: RaffleOptions) => {
       throw new Error(
         "El usuario no es miembro del servidor de DevTaLLes. Para participar en el sorteo, el usuario debe pertenecer a ese servidor."
       );
+    console.log({ user });
+
+    // NOTE: when userId is null, probably is because you are testing the code
+    if (!user.id) {
+      const newUserInDB = await prisma.user.create({
+        data: {
+          email: user.email,
+          name: user.name,
+          password: "",
+          role: "user",
+        },
+      });
+      user.id = newUserInDB.id;
+    }
 
     const newSubscription = await prisma.subscription.create({
       data: {

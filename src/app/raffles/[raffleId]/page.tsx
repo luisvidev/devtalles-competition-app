@@ -1,6 +1,7 @@
 import { getRaffleById } from "@/actions/raffles/getRaffleById";
 import { RaffleDetail } from "./ui/RaffleDetail";
 import { GoBackButton } from "@/components/layout/common/GoBackButton";
+import { getParticipation } from "@/actions/raffles/getPaticipation";
 
 interface Props {
   params: {
@@ -12,6 +13,7 @@ const RafflePage = async ({ params }: Props) => {
   const { raffleId } = params;
 
   const { raffle, prizes } = await getRaffleById(raffleId);
+  const participationResponse = await getParticipation(raffleId);
 
   if (!raffle) return null;
 
@@ -23,6 +25,7 @@ const RafflePage = async ({ params }: Props) => {
         totalParticipants={0}
         authorEmail={""}
         prizes={prizes}
+        participationResponse={participationResponse}
       />
     </section>
   );
