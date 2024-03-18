@@ -3,6 +3,7 @@ import { SideBar } from "@/components/layout/sidebar";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import NavBar from "@/components/NavBar";
 
 export default async function AdminDashboardLayout({
   children,
@@ -16,15 +17,18 @@ export default async function AdminDashboardLayout({
   }
 
   return (
-    <div className="w-full">
-      <div className="flex">
-        <header className="pointer-events-none inset-0 flex fixed top-16">
-          <SideBar />
-        </header>
-        <div>
-          <div className="h-full pl-52 w-auto py-5">{children}</div>
+    <>
+      <NavBar />
+      <div className="w-full">
+        <div className="flex">
+          <header className="pointer-events-none inset-0 flex fixed top-16">
+            <SideBar />
+          </header>
+          <div>
+            <div className="h-full pl-52 w-auto py-5">{children}</div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
