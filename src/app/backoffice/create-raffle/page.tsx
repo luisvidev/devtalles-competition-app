@@ -21,6 +21,7 @@ import {
   ListBulletIcon,
   PlusCircledIcon,
 } from "@radix-ui/react-icons";
+import { redirect } from "next/navigation";
 import { FormEvent } from "react";
 import Swal from "sweetalert2";
 
@@ -81,7 +82,10 @@ export default function CreateRafflePage() {
           ),
         });
 
-        if (response.ok) alert(`success`);
+        if (response.ok) {
+          alert(`success`);
+          redirect("/backoffice/raffles");
+        }
         if (!response.ok) alert(`error: ${response.errorMessage}`);
       } catch (error) {
         alert(`error: ${(error as Error).message}`);
