@@ -16,6 +16,7 @@ export default function MenuSideBar() {
   const hoverBackDrop = useElementBackDrop(parentRef);
 
   useEffect(() => {
+    console.log("pathName");
     if (activeLink && activeLink.current) {
       menu.setTop(activeLink.current);
     }
@@ -37,7 +38,7 @@ export default function MenuSideBar() {
           {routesAdmin.map(({ icon: IconComponent, name, path }) => (
             <li key={path} className="">
               <ActiveLink
-                refActive={path === pathName ? activeLink : null}
+                refActive={pathName.includes(path) ? activeLink : null}
                 onMouseEnter={(e) => hoverBackDrop.setTop(e.currentTarget)}
                 path={path}
               >
@@ -48,11 +49,11 @@ export default function MenuSideBar() {
         </ul>
         <div
           ref={menu.menuBackDrop}
-          className="absolute left-2 top-0 transition-transform duration-500 ease-in-out w-1 h-8 bg-primary backdrop-blur-lg rounded-md"
+          className="absolute left-2 top-0 transition-transform duration-500 ease-in-out w-1 h-8 bg-secondary backdrop-blur-lg rounded-md"
         ></div>
         <div
           ref={hoverBackDrop.menuBackDrop}
-          className="absolute invisible top-0 left-0 w-full h-8 -z-20 transition-transform duration-300 ease-out bg-black/5 backdrop-blur-sm rounded"
+          className="absolute invisible top-0 left-0 w-full h-8 -z-20 transition-transform duration-300 ease-out bg-accent backdrop-blur-sm rounded"
         ></div>
       </div>
     </div>

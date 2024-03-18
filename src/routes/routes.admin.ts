@@ -20,6 +20,11 @@ const routesAdmin: Route[] = [
     icon: InfoCircledIcon,
     name: "Participantes",
   },
+  {
+    path: `${adminPrefix}/create-raffle`,
+    icon: InfoCircledIcon,
+    name: "Crear",
+  },
 ];
 
 export default routesAdmin;
