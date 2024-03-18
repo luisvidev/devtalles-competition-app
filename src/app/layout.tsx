@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en" className="h-full">
-        <body className={`${inter.className} grid min-h-full relative`}>
+        <body className={`${inter.className} min-h-full`}>
           <NavBar />
           {children}
         </body>

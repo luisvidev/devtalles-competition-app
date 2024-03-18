@@ -56,7 +56,6 @@ export const authOptions: NextAuthOptions = {
 
         // Compare password
         if (!bcryptjs.compareSync(password, user.password)) return null;
-        console.log("comparing password", { user });
 
         // return user
         const { password: _, ...rest } = user;

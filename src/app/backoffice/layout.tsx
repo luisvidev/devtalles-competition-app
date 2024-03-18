@@ -16,15 +16,13 @@ export default async function AdminDashboardLayout({
   }
 
   return (
-    <div className="w-full grid">
-      <div className="min-h-full ml-72">
-        <header className="mt-16 fixed pointer-events-none inset-0 z-40 flex">
+    <div className="w-full">
+      <div className="flex">
+        <header className="pointer-events-none inset-0 flex fixed top-16">
           <SideBar />
         </header>
-        <div className="relative h-full bg-background">
-          <div className=" flex h-full flex-col px-4 pt-14 max-w-7xl">
-            {children}
-          </div>
+        <div>
+          <div className="h-full pl-52 w-auto py-5">{children}</div>
         </div>
       </div>
     </div>
