@@ -4,7 +4,7 @@ import { deleteRaffleById } from "@/actions/raffles/deleteRaffleById";
 import { useUIRaffle } from "@/store";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import Swal from "sweetalert2";
 
 export const DeleteRaffleButton = ({ raffleId }: { raffleId: string }) => {
   const router = useRouter();
@@ -13,13 +13,27 @@ export const DeleteRaffleButton = ({ raffleId }: { raffleId: string }) => {
   const deleteRaffleInUI = useUIRaffle((state) => state.deleteRaffle);
 
   const handleDeleteRaffle = async () => {
-    deleteRaffleInUI(true);
-    // Server Action
-    await deleteRaffleById(raffleId);
+    const confirmacion = await Swal.fire({
+      title: "¿Estás seguro de eliminar el sorteo?",
+      text: "¡No podrás revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, ¡borrarlo!",
+      cancelButtonText: "Cancelar",
+    });
 
-    deleteRaffleInUI(false);
-    // return to raffles page
-    router.push("/backoffice/raffles");
+    // Si el usuario confirma la eliminación, proceder con la eliminación
+    if (confirmacion.isConfirmed) {
+      deleteRaffleInUI(true);
+      // Server Action
+      await deleteRaffleById(raffleId);
+
+      deleteRaffleInUI(false);
+      // return to raffles page
+      router.push("/backoffice/raffles");
+    }
   };
 
   return (

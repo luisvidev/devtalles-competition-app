@@ -18,15 +18,17 @@ export const PrizeCard = ({ prize }: Props) => {
   };
 
   return (
-    <li className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <li className="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
       <div className="py-4">
-        <label>Nombre</label>
-        <p>{prize.name}</p>
+        <h4 className="text-lg font-semibold dark:text-white mb-1">Nombre:</h4>
+        <p className="text-gray-600 text-justify">{prize.name}</p>
       </div>
       {prize.description && (
         <div className="py-4">
-          <label>Desripción del premio</label>
-          <p>{prize.description}</p>
+          <h4 className="text-lg font-semibold dark:text-white mb-1">
+            Desripción:
+          </h4>
+          <p className="text-gray-600 text-justify">{prize.description}</p>
         </div>
       )}
       {!prize.winnerId && (
@@ -41,7 +43,18 @@ export const PrizeCard = ({ prize }: Props) => {
         </div>
       )}
 
-      {prize.winnerEmail && <div>El ganador es: {prize.winnerEmail}</div>}
+      {prize.winnerEmail && (
+        <div>
+          <h4 className="text-lg font-semibold dark:text-white mb-1">
+            Ganador 🎉:
+          </h4>
+          <h1 className="mb-4 font-extrabold text-gray-900 dark:text-white text-lg ">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-orange-300">
+              {prize.winnerEmail}
+            </span>
+          </h1>
+        </div>
+      )}
     </li>
   );
 };
