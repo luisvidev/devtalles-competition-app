@@ -8,5 +8,5 @@ export interface Raffle {
   createdAt: Date;
   updatedAt: Date;
   endAt: Date;
-  authorId: string;
+  userId: string;
 }
