@@ -1,5 +1,6 @@
 import { chooseWinner } from "@/actions/raffles/chooseWinner";
 import { Prize } from "@/types";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 interface Props {
@@ -8,6 +9,9 @@ interface Props {
 
 export const PrizeCard = ({ prize }: Props) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const { data: session, status } = useSession();
+
   const handleChooseWinner = async () => {
     setErrorMessage(null);
     try {
@@ -31,7 +35,7 @@ export const PrizeCard = ({ prize }: Props) => {
           <p className="text-gray-600 text-justify">{prize.description}</p>
         </div>
       )}
-      {!prize.winnerId && (
+      {!prize.winnerId && session?.user.role === "admin" && (
         <div>
           <button
             onClick={handleChooseWinner}

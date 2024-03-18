@@ -86,7 +86,7 @@ async function main() {
       "👨🏻¡Arranca el #CodeQuest! \n 🖥️Su misión es desarrollar una aplicación Web FullStack para realizar sorteos entre miembros de #Discord \n 👉🏻Recuerden coordinar con su equipo designado en los canales exclusivos creados en la comunidad \n ⏳Entrega: Lunes 18 de Marzo 9:00AM (GMT-6)🇲🇽",
     termsAndConditions: "Aplica terminos y condiciones",
     imageUrl:
-      "https://pbs.twimg.com/profile_images/1587916895143043073/DMpsgyZ4_400x400.jpg",
+      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     timezone: "America/Mexico_City",
     endAt: dayjs.utc().add(1, "week").endOf("day").toDate(), // 23:99 utc -> 19:59 Mexico
     authorId: admin1.id,
