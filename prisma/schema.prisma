@@ -34,7 +34,7 @@ model User {
 
 model Raffle {
   id                 String         @id @default(uuid())
-  name               String
+  name               String         @unique
   description        String
   termsAndConditions String
   imageUrl           String?
@@ -67,6 +67,8 @@ model Subscription {
 
   raffleId String
   raffle   Raffle @relation(fields: [raffleId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
 
   /// If the subscriber wins, this is relation with the prize
   prizeId String? @unique

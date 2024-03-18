@@ -16,6 +16,9 @@ export const getRaffles = async ({ page = 1, take = 12 }: RaffleOptions) => {
     const raffles = await prisma.raffle.findMany({
       take: take,
       skip: (page - 1) * take,
+      orderBy: {
+        endAt: "desc",
+      },
       // include: {
       //   ProductImage: {
       //     take: 2,

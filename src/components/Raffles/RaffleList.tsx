@@ -1,5 +1,4 @@
 import React from "react";
-import { getRaffles } from "@/actions/raffles/getRaffles";
 import Link from "next/link";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import Image from "next/image";
@@ -12,7 +11,7 @@ interface Props {
 
 export const RaffleList = ({ raffles }: Props) => {
   return (
-    <ul className="containerCard  my-10">
+    <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 py-4">
       {raffles.map((raffle) => (
         <Link
           key={raffle.id}
