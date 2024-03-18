@@ -2,6 +2,14 @@ import React from "react";
 import { getRaffles } from "@/actions/raffles/getRaffles";
 import { RaffleList } from "@/components/raffles/RaffleList";
 import { RaffleCard } from "@/components/raffles/RaffleCard";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sorteos",
+  description:
+    "La página de sorteos es un destino emocionante para aquellos que buscan participar en eventos promocionales y tener la oportunidad de ganar premios increíbles. Esta plataforma ofrece una variedad de sorteos,Los usuarios pueden explorar una amplia gama de sorteos disponibles, cada uno con su propio conjunto de premios y requisitos de participación.",
+  keywords: ["Sorteos", "informacion", "Premios", "participar"],
+};
 
 interface Props {
   searchParams: {
