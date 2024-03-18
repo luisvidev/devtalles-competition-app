@@ -48,7 +48,7 @@ export const DetailsForm = () => {
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Tell us a little bit about yourself"
+            placeholder="Añade una descripcion al sorteo"
           />
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -65,7 +65,7 @@ export const DetailsForm = () => {
           <Label htmlFor="termsAndConditions">Terminos y condiciones</Label>
           <Textarea
             id="termsAndConditions"
-            placeholder="Tell us a little bit about yourself"
+            placeholder="Añade los terminos y condiciones de tu sorteo"
             value={termsAndConditions}
             onChange={(e) => setTermsAndConditions(e.target.value)}
           />

@@ -1,4 +1,4 @@
-import { CardStackIcon } from "@radix-ui/react-icons";
+import { CardStackIcon, FilePlusIcon } from "@radix-ui/react-icons";
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 interface Route {
@@ -17,8 +17,8 @@ const routesAdmin: Route[] = [
   },
   {
     path: `${adminPrefix}/create-raffle`,
-    icon: InfoCircledIcon,
-    name: "Crear",
+    icon: FilePlusIcon,
+    name: "Crear sorteo",
   },
 ];
 
