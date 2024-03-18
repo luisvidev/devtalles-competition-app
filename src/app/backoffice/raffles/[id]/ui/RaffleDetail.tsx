@@ -45,12 +45,12 @@ export const RaffleDetail = ({
       <div className="flex justify-between pt-8 py-10">
         <h1 className="text-5xl font-extrabold dark:text-white">{name}</h1>
         <div className="flex items-start gap-x-4">
-          <button
+          {/* <button
             type="button"
             className="focus:outline-none text-white bg-primary hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
           >
             Editar
-          </button>
+          </button> */}
           <DeleteRaffleButton raffleId={raffleId} />
         </div>
       </div>
